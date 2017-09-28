@@ -1,0 +1,33 @@
+Test SSL (see check.sh)
+
+GoTo ssl/CA1
+
+curl --cacert ../server/CA.crt https://localhost:444
+Result:
+<html>
+<head><title>400 No required SSL certificate was sent</title></head>
+<body bgcolor="white">
+<center><h1>400 Bad Request</h1></center>
+<center>No required SSL certificate was sent</center>
+<hr><center>nginx/1.13.3</center>
+</body>
+</html>
+
+curl --cacert ../server/CA.crt --cert cert.pem https://localhost:444
+Result: 
+<html>
+    <body>
+        <h1>Hello, world!</h1>
+    </body>
+</html>
+
+curl --cacert ../server/CA.crt --cert cert.pem https://localhost:444
+Result:
+<html>
+<head><title>400 The SSL certificate error</title></head>
+<body bgcolor="white">
+<center><h1>400 Bad Request</h1></center>
+<center>The SSL certificate error</center>
+<hr><center>nginx/1.13.3</center>
+</body>
+</html>
